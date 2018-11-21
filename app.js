@@ -2,8 +2,8 @@
 
 const weather = require('./weather.js');
 
-const weatherRequest = process.argv.slice(2).join(' ');
-weatherRequest.forEach(weather.get);
+const query = process.argv.slice(2).join(' ');
+
 
 //query: 90201
 //query: Los Angeles

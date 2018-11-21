@@ -1,6 +1,8 @@
 const https = require('https');
+const http = require('http');
 const querystring = require('querystring');
 const api = require('./api.json');
+
 
 // Print out temp details
 function printWeather(weather) {
@@ -52,12 +54,13 @@ function get(query) {
             // Status error code
             const statusErrorCode = new Error(`There was an error getting the message for "${query}". (${http.STATUS_CODES[response.statusCode]})`);
             printError(statusErrorCode);
-          } 
-        });       
+          }
+        });      
 } catch (error) {
     printError(error);
-  }  
+  } 
+  
+}
 
 module.exports.get = get;
 
-//TODO: error handler
