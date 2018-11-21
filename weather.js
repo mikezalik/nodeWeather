@@ -14,10 +14,11 @@ function printError(error) {
   
 
 function get(query) {
-    const parameters = {
-      APPID: api.key,
-      units: 'imperial'
-    };
+    try {
+        const parameters = {
+            APPID: api.key,
+            units: 'imperial'
+        };
 
     const zipCode = parseInt(query);
     if (!isNaN(zipCode)) {
@@ -30,18 +31,32 @@ function get(query) {
     console.log(url);
 
     const request = https.get(url, response => {
-        let body = "";
-        // Read the data
-        response.on('data', chunk => {
-            body += chunk;
-        });
-        response.on('end', () => {
-            console.log(body);
-            //Parse data
-            //Print the data
-        });
-    });
-}
+        if (response.statusCode === 200) {
+            let body = '';
+            // Read the data
+            response.on('data', chunk => {
+              body += chunk;
+            });
+            response.on('end', () => {
+              try {
+                //Parse data
+                const weather = JSON.parse(body);
+                //Print the data
+                printWeather(weather);
+              } catch (error) {
+                //Parser error
+                printError(error);
+              }
+            });
+          } else {
+            // Status error code
+            const statusErrorCode = new Error(`There was an error getting the message for "${query}". (${http.STATUS_CODES[response.statusCode]})`);
+            printError(statusErrorCode);
+          } 
+        });       
+} catch (error) {
+    printError(error);
+  }  
 
 module.exports.get = get;
 
