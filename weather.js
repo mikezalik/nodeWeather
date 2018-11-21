@@ -59,7 +59,6 @@ function get(query) {
 } catch (error) {
     printError(error);
   } 
-  
 }
 
 module.exports.get = get;
