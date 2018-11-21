@@ -8,6 +8,10 @@ function printWeather(weather) {
     console.log(message);
   }
 // Print out error message
+function printError(error) {
+    console.error(error.message);
+  }
+  
 
 function get(query) {
     const parameters = {
