@@ -1,4 +1,4 @@
-//command line based weather app
+//command line based weather app written in node
 
 const weather = require('./weather.js');
 
