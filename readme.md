@@ -9,4 +9,4 @@ How to use:
 2. cd (directory)
 3. node app.js (location)
 
-temperature will be returned in your terminal.
+Temperature will be returned in your terminal.
